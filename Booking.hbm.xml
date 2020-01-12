@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 10, 2019 5:27:06 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.git.MovieMania.beans.Booking" table="BOOKING">
+        <id name="id1" type="java.lang.Integer">
+            <column name="ID1" />
+            <generator class="assigned" />
+        </id>
+        <property name="movie" type="java.lang.String">
+            <column name="MOVIE" />
+        </property>
+        <property name="cinema" type="java.lang.String">
+            <column name="CINEMA" />
+        </property>
+        <property name="timing" type="java.lang.String">
+            <column name="TIMING" />
+        </property>
+        <property name="ticket" type="int">
+            <column name="TICKET" />
+        </property>
+        <property name="cust_name" type="java.lang.String">
+            <column name="cust_name" />
+        </property>
+    </class>
+</hibernate-mapping>

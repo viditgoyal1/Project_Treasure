@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <script src="jquery.min.js" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+ <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+  <style>
+  #showdata{
+  	text-align-last:left;
+  	margin-right: 50px;
+  	font-size: 40;
+  }
+  </style>
+        </head>
+    <script>
+        
+               $.ajax({ 
+            url: "NewServlet",
+                    method: "POST",
+                    success: function (datas)
+                    { 
+                        d = JSON.parse(datas);
+                        /* alert(d);
+                        document.getElementById("t").innerHTML=d; */
+                        console.log(d.response);
+                        document.getElementById("showdata").innerHTML ="Hello " +d.custName+", Your bookings are displayed below :";
+                                    if(d.response == 1){
+                                        var x = "";
+                                    for (var i = 0; i < d.data.length; i++) {
+                                        x += "<tr>";
+                                        x += "<td>" + d.data[i].movie + "</td>";
+                                        x += "<td>" + d.data[i].cinema + "</td>";
+                                        x += "<td>" + d.data[i].timing + "</td>";
+                                        x += "<td>" + d.data[i].ticket + "</td>";
+                                        x += "</tr>";
+                                    
+                                }
+                            }
+                            document.getElementById("tt").innerHTML=x;
+//                            $("#userdetails").dataTable();
+                                $('#t').DataTable();
+                    },
+                    error: function (d) {
+                        alert("error");
+                    console.log("error");
+                }
+          
+
+        } );
+        
+    </script>
+    
+    <p id = "showdata" ></p>
+    <div style="margin:1%;box-shadow: 0px 1px 12px gray;padding: 4%;">
+    
+        <table class="table table-hover " id="t" >
+                        <thead>
+                                <tr>
+                                    <th>Movie</th>
+                                    <th>Cinema</th>
+                                    <th>Timing</th>
+                                    <th>Tickets</th>
+                                </tr>
+                        </thead>
+                      
+                        
+            <tbody id="tt">
+            </tbody>
+
+                    </table>
+    </div>
+</html>

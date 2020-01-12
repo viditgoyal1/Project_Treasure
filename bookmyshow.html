@@ -1,0 +1,246 @@
+<html>
+<head>
+
+<script src="jquery.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+  <!-- <link href="books.css" rel="stylesheet" type="text/css"/> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+  .container{
+  		width: 100%;
+  		background-color:white
+  }
+  .carousel-inner{
+  		width: 100%;
+  		height : 30%
+  		background-color:white
+  }
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+    /* width: 70%; */
+    margin: auto;
+    height : 30%;
+  }
+  #tt{
+  	text-align-last:right;
+  	margin-right: 50px;
+  	font-size: 40;
+  }
+  </style>
+</head>
+
+<body  >
+<script>
+$.ajax({ 
+    url: "CustNameServlet",
+            method: "POST",
+            success: function (datas)
+            { 
+                d = JSON.parse(datas);
+                
+                var x = "Hello ";
+                x += d.custName;
+                document.getElementById("tt").innerHTML=x;
+            },
+            error: function (d) {
+                alert("error");
+            console.log("error");
+        }
+  
+
+} );
+</script>
+<div id = "tt">
+
+</div>
+<div class="container">
+  <div id="myCarousel" class="carousel slide">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li class="item1 active"></li>
+      <li class="item2"></li>
+      <li class="item3"></li>
+      <li class="item4"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+
+      <div class="item active">
+        <img src="maxresdefault.jpg" alt="movie1" width="600" height="250">
+        <div class="carousel-caption">
+          <h3>Pati Patni Aur Woh</h3>
+         <!--  <p>The atmosphere in Chania has a touch of Florence and Venice.</p> -->
+        </div>
+      </div>
+
+      <div class="item">
+        <img src="108778-t.jpg" alt="movie2" width="600" height="250">
+        <div class="carousel-caption">
+          <h3>Tanhaji</h3>
+         <!--  <p>The atmosphere in Chania has a touch of Florence and Venice.</p> -->
+        </div>
+      </div>
+    
+      <div class="item">
+        <img src="chapaak.jpg" alt="Movie3" width="600" height="250">
+        <div class="carousel-caption">
+          <h3>Chapaak</h3>
+         <!--  <p>Beautiful flowers in Kolymbari, Crete.</p> -->
+        </div>
+      </div>
+
+      <div class="item">
+        <img src="73053693.jpg" alt="Movie4" width="600" height="250">
+        <div class="carousel-caption">
+          <h3>Good News</h3>
+          <!-- <p>Beautiful flowers in Kolymbari, Crete.</p> -->
+        </div>
+      </div>
+  
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+
+<script>
+$(document).ready(function(){
+  // Activate Carousel
+  $("#myCarousel").carousel();
+    
+  // Enable Carousel Indicators
+  $(".item1").click(function(){
+    $("#myCarousel").carousel(0);
+  });
+  $(".item2").click(function(){
+    $("#myCarousel").carousel(1);
+  });
+  $(".item3").click(function(){
+    $("#myCarousel").carousel(2);
+  });
+  $(".item4").click(function(){
+    $("#myCarousel").carousel(3);
+  });
+    
+  // Enable Carousel Controls
+  $(".left").click(function(){
+    $("#myCarousel").carousel("prev");
+  });
+  $(".right").click(function(){
+    $("#myCarousel").carousel("next");
+  });
+});
+</script>
+<form action="booking" method="post" align="center">
+<font size="6">
+<b>Movie Mania</b>
+</font><br/><br/><br/><br/>
+<font size="4">
+Select the movie:</font>
+<select name="movie">
+<option>Pati Patni Aur Woh</option>
+<option>Chapaak</option>
+<option>Tanhaji</option>
+<option>Good News</option>
+</select>
+<br/><br/><br/>
+<font size="4">
+Select the cinema</font>
+<select name="cinema">
+<option>Pvr</option>
+<option>Fun cinemas</option>
+<option>Cinepolis</option>
+</select>
+<br/><br/><br/>
+<font size="4">
+Select show timings</font>
+<select name="timing">
+<option>9:00</option>
+<option>12:00</option>
+<option>3:00</option>
+<option>9:00</option>
+</select>
+<br/><br/><br/>
+<font size="4">
+Select no of tickets:</font>
+<select name="ticket">
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+</select><br/><br/><br/>
+<input type="submit" value="Book"/>
+
+</form>
+<!--    <script>
+        
+        $(document).ready(function(){
+           $("#show").click(function(){
+               $.ajax({ 
+            url: "NewServlet",
+                    method: "POST",
+                    success: function (datas)
+                    { 
+                        d = JSON.parse(datas);
+                        console.log(d.response);
+                                    
+                                    if(d.response == 1){
+                                        var x = "";
+                                    for (var i = 0; i < d.data.length; i++) {
+                                        x += "<tr>";
+                                        x += "<td>" + d.data[i].movie + "</td>";
+                                        x += "<td>" + d.data[i].cinema + "</td>";
+                                        x += "<td>" + d.data[i].timing + "</td>";
+                                        x += "<td>" + d.data[i].ticket + "</td>";
+                                        x += "</tr>";
+                                    
+                                }
+                            }
+                            document.getElementById("tt").innerHTML=x;
+//                            $("#userdetails").dataTable();
+                                $('#t').DataTable();
+                    },
+                    error: function (d) {
+                        alert("error");
+                    console.log("error");
+                }
+          
+
+        } );
+    });
+ });
+        
+    </script>
+    
+    
+    <div style="margin:1%;box-shadow: 0px 1px 12px gray;padding: 4%;">
+        <table class="table table-hover " id="t" >
+                        <thead>
+                                <tr>
+                                    <th>Movie</th>
+                                    <th>Cinema</th>
+                                    <th>Timing</th>
+                                    <th>tickets</th>
+                                </tr>
+                        </thead>
+                      
+                        
+            <tbody id="tt">
+            </tbody>
+
+                    </table>
+    </div>-->
+</body>
+</html>
